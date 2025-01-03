@@ -9,6 +9,9 @@
 <p align="center">
   Based on Sketchware
 </p>
+<p align="center">
+   <b>Note that this is not complete.</b>
+</p>
 <br>
 
 <p align="center">
