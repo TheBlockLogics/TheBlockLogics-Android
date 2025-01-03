@@ -64,7 +64,7 @@ public class PropertiesApplicator {
     params.width = width;
     params.height = height;
 
-    if (params instanceof LinearLayout.LayoutParams ) {
+    if (params instanceof LinearLayout.LayoutParams) {
       ((LinearLayout.LayoutParams) params).gravity = viewData.layout.layoutGravity;
     } else if (params instanceof FrameLayout.LayoutParams) {
       ((FrameLayout.LayoutParams) params).gravity = viewData.layout.layoutGravity;

@@ -1,20 +1,16 @@
 package com.raredev.theblocklogics.utils;
 
-import android.content.Context;
-import com.raredev.theblocklogics.app.TheBlockLogicsApp;
-import java.io.InputStream;
-import java.io.ByteArrayOutputStream;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import com.raredev.theblocklogics.models.Project;
-import com.raredev.theblocklogics.viewmodel.ProjectViewModel;
-import com.google.gson.Gson;
+import com.raredev.theblocklogics.app.TheBlockLogicsApp;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class FileUtil {
 

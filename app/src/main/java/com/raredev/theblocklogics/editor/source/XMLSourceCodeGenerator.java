@@ -6,9 +6,8 @@ import com.raredev.theblocklogics.editor.view.data.ViewData;
 import com.raredev.theblocklogics.editor.view.utils.Attributes;
 import com.raredev.theblocklogics.editor.view.utils.ViewEditorUtils;
 import com.raredev.theblocklogics.utils.Constants;
-import java.util.List;
 import dev.trindadedev.theblocklogics.editor.view.type.ViewType;
-
+import java.util.List;
 
 public class XMLSourceCodeGenerator {
 

@@ -7,7 +7,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
 /**
- * Abstract class to represent asynchronous tasks. 
+ * Abstract class to represent asynchronous tasks.
  *
  * @param <R> Task result type.
  */
@@ -26,7 +26,7 @@ public abstract class Task<R> {
   protected abstract R doInBackground() throws Exception;
 
   /**
-   * This method is called when the task is successful. 
+   * This method is called when the task is successful.
    *
    * @param result The task result.
    */
@@ -41,7 +41,7 @@ public abstract class Task<R> {
     e.printStackTrace();
   }
 
-  /**  This method is called when the task is complete, regardless of the result. */
+  /** This method is called when the task is complete, regardless of the result. */
   protected void onFinish() {}
 
   /** This method is called when the task starts. */
