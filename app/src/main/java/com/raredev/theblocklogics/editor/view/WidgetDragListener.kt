@@ -85,7 +85,7 @@ class WidgetDragListener(
           val viewData = state.createViewData()
           viewData!!.id = editor.generateId(viewData.type)
 
-          view = ViewItemCreator.createView(editor.getContext(), viewData)
+          view = ViewItemCreator.createItemView(editor.getContext(), viewData)
           editor.setListeners(view.view)
         } else {
           view = state as ViewItem

@@ -6,7 +6,7 @@ import com.raredev.theblocklogics.editor.view.views.ViewItem
 
 object ViewItemCreator {
 
-  fun createItemView(data: ViewData): ViewItem {
+  fun createItemView(context: Context, data: ViewData): ViewItem {
     when (data.type) {
       
     }

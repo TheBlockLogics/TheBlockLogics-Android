@@ -21,6 +21,7 @@ import com.raredev.theblocklogics.editor.view.views.layout.LinearLayoutItem
 import com.raredev.theblocklogics.models.Property
 import com.raredev.theblocklogics.utils.Constants
 import dev.trindadedev.theblocklogics.editor.view.ViewItemCreator
+import dev.trindadedev.theblocklogics.editor.view.type.ViewType
 
 class ViewEditor: FrameLayout {
 
@@ -49,7 +50,7 @@ class ViewEditor: FrameLayout {
     data.layout.orientation = LinearLayout.VERTICAL
     data.setPadding(0)
 
-    root = ViewItemCreator.createView(getContext(), data) as LinearLayoutItem
+    root = ViewItemCreator.createItemView(getContext(), data) as LinearLayoutItem
     root.setOnDragListener(dragListener)
     addView(root)
 
