@@ -14,11 +14,13 @@ import dev.trindadedev.theblocklogics.editor.view.type.ViewType
 
 /** Main View Creator of ViewEditor */
 object ViewItemCreator {
-
+  
+  @JvmStatic
   fun createItemView(context: Context, data: ViewData): ViewItem {
     return handleLayoutViews(context, data)
   }
 
+  @JvmStatic
   private fun handleLayoutViews(context: Context, data: ViewData): ViewItem {
     return when (data.type) {
       ViewType.TYPE_LINEAR_LAYOUT,
@@ -31,6 +33,7 @@ object ViewItemCreator {
     }
   }
 
+  @JvmStatic
   private fun handleNormalViews(context: Context, data: ViewData): ViewItem {
     return when (data.type) {
       ViewType.TYPE_IMAGE_VIEW,
@@ -43,6 +46,7 @@ object ViewItemCreator {
     }
   }
 
+  @JvmStatic
   private fun handleTextViews(context: Context, data: ViewData): ViewItem {
     return when (data.type) {
       ViewType.TYPE_TEXT_VIEW -> TextViewItem(context, data)
@@ -52,6 +56,7 @@ object ViewItemCreator {
     }
   }
 
+  @JvmStatic
   private fun getDefaultView(context: Context, data: ViewData): ViewItem {
     return LinearLayoutItem(context, data)
   }
