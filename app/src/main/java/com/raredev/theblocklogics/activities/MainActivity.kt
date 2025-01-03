@@ -1,9 +1,9 @@
-package com.raredev.theblocklogics.activities;
+package com.raredev.theblocklogics.activities
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.raredev.theblocklogics.R
 import com.raredev.theblocklogics.databinding.ActivityMainBinding
@@ -11,7 +11,7 @@ import com.raredev.theblocklogics.dialogs.ConfigProjectDialog
 import com.raredev.theblocklogics.utils.Constants
 import com.raredev.theblocklogics.viewmodel.MainViewModel
 
-public class MainActivity: BaseActivity() {
+public class MainActivity : BaseActivity() {
 
   private val viewModel by viewModels<MainViewModel>()
 
@@ -19,7 +19,8 @@ public class MainActivity: BaseActivity() {
   private val binding: ActivityMainBinding
     get() = checkNotNull(_binding)
 
-  private val onBackPressedCallback = object: OnBackPressedCallback(true) {
+  private val onBackPressedCallback =
+    object : OnBackPressedCallback(true) {
       override fun handleOnBackPressed() {
         val previousFragment = viewModel.previousFragment.value
         if (previousFragment != null) {
@@ -38,20 +39,19 @@ public class MainActivity: BaseActivity() {
     setSupportActionBar(binding.toolbar)
 
     viewModel.selectedFragment.observe(this, this::onChangeSelectedFragment)
-    viewModel.navSelectedItemId.observe(this) {
-      binding.bottomNavigation.setSelectedItemId(it)
-    }
+    viewModel.navSelectedItemId.observe(this) { binding.bottomNavigation.setSelectedItemId(it) }
 
     binding.bottomNavigation.setOnItemSelectedListener() {
       when (it.itemId) {
         R.id.menu_home -> viewModel.setFragment(Constants.HOME_FRAGMENT)
         R.id.menu_settings -> viewModel.setFragment(Constants.SETTINGS_FRAGMENT)
-        else -> false
       }
       true
     }
 
-    binding.fab.setOnClickListener() { ConfigProjectDialog.newInstance(null).show(supportFragmentManager, null) }
+    binding.fab.setOnClickListener() {
+      ConfigProjectDialog.newInstance(null).show(supportFragmentManager, null)
+    }
 
     if (viewModel.selectedFragment.value == -1 && viewModel.previousFragment.value == -1) {
       viewModel.setFragment(Constants.HOME_FRAGMENT)
@@ -67,11 +67,12 @@ public class MainActivity: BaseActivity() {
   }
 
   private fun onChangeSelectedFragment(fragmentIndex: Int?) {
-    val selectedFragment = when (fragmentIndex) {
-      Constants.HOME_FRAGMENT -> binding.home
-      Constants.SETTINGS_FRAGMENT -> binding.settings
-      else -> throw IllegalArgumentException("Invalid fragment: $fragmentIndex")
-    }
+    val selectedFragment =
+      when (fragmentIndex) {
+        Constants.HOME_FRAGMENT -> binding.home
+        Constants.SETTINGS_FRAGMENT -> binding.settings
+        else -> throw IllegalArgumentException("Invalid fragment: $fragmentIndex")
+      }
 
     for (fragment in arrayOf(binding.home, binding.settings)) {
       fragment.isVisible = fragment == selectedFragment

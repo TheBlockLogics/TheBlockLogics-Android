@@ -1,58 +1,56 @@
 package com.raredev.theblocklogics.dialogs
 
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
-import android.view.View
 import android.widget.EditText
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.raredev.theblocklogics.activities.ProjectActivity
 import com.raredev.theblocklogics.R
+import com.raredev.theblocklogics.activities.ProjectActivity
 import com.raredev.theblocklogics.databinding.DialogNewProjectBinding
 import com.raredev.theblocklogics.models.Project
 import com.raredev.theblocklogics.utils.Constants
-import com.raredev.theblocklogics.utils.FileUtil
-import com.raredev.theblocklogics.utils.FileUtil.writeFile
 import com.raredev.theblocklogics.utils.FileUtil.writeBitmapDrawableImage
-import com.raredev.theblocklogics.utils.Logger
+import com.raredev.theblocklogics.utils.FileUtil.writeFile
 import com.raredev.theblocklogics.utils.OnTextChangedWatcher
 import com.raredev.theblocklogics.utils.UriUtils
 import com.raredev.theblocklogics.viewmodel.MainViewModel
-import java.io.File;
+import dev.trindadedev.theblocklogics.ext.getSafeParcelable
+import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
-import org.json.JSONException;
-import org.json.JSONObject;
+import kotlinx.coroutines.withContext
+import org.json.JSONException
+import org.json.JSONObject
 
-class ConfigProjectDialog(): DialogFragment() {
+class ConfigProjectDialog() : DialogFragment() {
 
-  private val viewModel by viewModels<MainViewModel>(
-    ownerProducer = { requireActivity() })
+  private val viewModel by viewModels<MainViewModel>(ownerProducer = { requireActivity() })
 
   private var _binding: DialogNewProjectBinding? = null
   private val binding: DialogNewProjectBinding
     get() = checkNotNull(_binding)
 
-  private val pickMedia = registerForActivityResult(PickVisualMedia()) {
+  private val pickMedia =
+    registerForActivityResult(PickVisualMedia()) {
       if (it != null) {
         val drawable = UriUtils.convertUriToDrawable(it)
         binding.chooseIcon.setImageDrawable(drawable)
       }
     }
 
-  private val textWatcher = object : OnTextChangedWatcher() {
+  private val textWatcher =
+    object : OnTextChangedWatcher() {
       override fun afterTextChanged(editable: Editable) {
         verifyDetails()
       }
@@ -80,9 +78,7 @@ class ConfigProjectDialog(): DialogFragment() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    arguments?.let {
-      project = it.getParcelable(Constants.KEY_EXTRA_PROJECT, Project::class.java)
-    }
+    arguments?.let { project = it.getSafeParcelable<Project>(Constants.KEY_EXTRA_PROJECT) }
   }
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -122,7 +118,7 @@ class ConfigProjectDialog(): DialogFragment() {
     }
   }
 
-  /** Add text watcher for all EditText  */
+  /** Add text watcher for all EditText */
   private fun addTextWatcher() {
     binding.apply {
       setEditTextWatcher(tieName)
@@ -150,12 +146,13 @@ class ConfigProjectDialog(): DialogFragment() {
       CoroutineScope(Dispatchers.IO).launch {
         try {
           // Write or rewrite the project
-          val writtenProject = writeProject(
-            binding.tieName.text.toString(),
-            binding.tiePackage.text.toString(),
-            binding.tieVersionCode.text.toString().toInt(),
-            binding.tieVersionName.text.toString()
-          )
+          val writtenProject =
+            writeProject(
+              binding.tieName.text.toString(),
+              binding.tiePackage.text.toString(),
+              binding.tieVersionCode.text.toString().toInt(),
+              binding.tieVersionName.text.toString(),
+            )
 
           withContext(Dispatchers.Main) {
             // checks if a project is being edited
@@ -185,8 +182,8 @@ class ConfigProjectDialog(): DialogFragment() {
         // Launch the media picker to get an image
         pickMedia.launch(
           PickVisualMediaRequest.Builder()
-          .setMediaType(PickVisualMedia.SingleMimeType(MIME_TYPE))
-          .build()
+            .setMediaType(PickVisualMedia.SingleMimeType(MIME_TYPE))
+            .build()
         )
       }
       advancedOptionsToggle.setOnClickListener {
@@ -201,7 +198,12 @@ class ConfigProjectDialog(): DialogFragment() {
     binding.advancedOptions.isVisible = showAdvancedOptions
   }
 
-  private suspend fun writeProject(appName: String, appPackage: String, versionCode: Int, versionName: String): Project {
+  private suspend fun writeProject(
+    appName: String,
+    appPackage: String,
+    versionCode: Int,
+    versionName: String,
+  ): Project {
     val projectsDir = File(Constants.PROJECTS_DIR_PATH)
     val projectCode = project?.projectCode ?: getNewProjectCode(projectsDir).toString()
     val projectDir = File(projectsDir, projectCode)
@@ -210,12 +212,13 @@ class ConfigProjectDialog(): DialogFragment() {
       projectDir.mkdirs()
     }
 
-    val configJson = JSONObject().apply {
-      put(Constants.PROJECT_NAME_KEY, appName)
-      put(Constants.PROJECT_PACKAGE_KEY, appPackage)
-      put(Constants.PROJECT_VERSION_CODE_KEY, versionCode)
-      put(Constants.PROJECT_VERSION_NAME_KEY, versionName)
-    }
+    val configJson =
+      JSONObject().apply {
+        put(Constants.PROJECT_NAME_KEY, appName)
+        put(Constants.PROJECT_PACKAGE_KEY, appPackage)
+        put(Constants.PROJECT_VERSION_CODE_KEY, versionCode)
+        put(Constants.PROJECT_VERSION_NAME_KEY, versionName)
+      }
 
     val iconFile = File(projectDir, Constants.PROJECT_ICON_FILE_NAME)
     val configFile = File(projectDir, Constants.PROJECT_CONFIG_FILE_NAME)
@@ -243,15 +246,16 @@ class ConfigProjectDialog(): DialogFragment() {
   }
 
   private fun verifyDetails() {
-    setPositiveButtonEnabled(isValidName() && isValidPackage() && isValidVersionCode()  && isValidVersionName())
+    setPositiveButtonEnabled(
+      isValidName() && isValidPackage() && isValidVersionCode() && isValidVersionName()
+    )
   }
 
   private fun isValidDetails(): Boolean {
     return !(binding.tilName.isErrorEnabled ||
-        binding.tilPackage.isErrorEnabled ||
-        binding.tilVersionCode.isErrorEnabled ||
-        binding.tilVersionName.isErrorEnabled
-      )
+      binding.tilPackage.isErrorEnabled ||
+      binding.tilVersionCode.isErrorEnabled ||
+      binding.tilVersionName.isErrorEnabled)
   }
 
   private fun isValidName(): Boolean {
@@ -299,7 +303,7 @@ class ConfigProjectDialog(): DialogFragment() {
   }
 
   private fun isValidVersionName(): Boolean {
-    val versionName = binding.tieVersionName.text.toString().trim();
+    val versionName = binding.tieVersionName.text.toString().trim()
 
     if (versionName.length <= 0) {
       binding.tilVersionName.error = getString(R.string.error_field_empty)

@@ -44,17 +44,19 @@ public abstract class BaseActivity extends AppCompatActivity {
   protected abstract View bindLayout();
 
   public int getStatusBarColor() {
-    return MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnSurfaceInverse, 0);
+    return MaterialColors.getColor(
+        this, com.google.android.material.R.attr.colorOnSurfaceInverse, 0);
   }
 
   public int getNavigationBarColor() {
-    return MaterialColors.getColor(this, com.google.android.material.R.attr.colorOnSurfaceInverse, 0);
+    return MaterialColors.getColor(
+        this, com.google.android.material.R.attr.colorOnSurfaceInverse, 0);
   }
 
   public AlertDialog getProgressDialog() {
     return progressDlg;
   }
-  
+
   /**
    * Returns a parcelable based in Android SDK to avoid crashes and deprecated uses.
    *
@@ -72,14 +74,15 @@ public abstract class BaseActivity extends AppCompatActivity {
       return extras.getParcelable(key);
     }
   }
-  
+
   /**
    * Returns a parcelable ArrayList based in Android SDK to avoid crashes and deprecated uses.
    *
    * @param key: The key of parcelable
    * @param clazz: The class of parcelable
    */
-  protected <T extends Parcelable> ArrayList<T> getParcelableArrayList(final String key, final Class<T> clazz) {
+  protected <T extends Parcelable> ArrayList<T> getParcelableArrayList(
+      final String key, final Class<T> clazz) {
     var extras = getIntent().getExtras();
     if (extras == null) return null;
     if (!extras.containsKey(key)) return null;

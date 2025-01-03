@@ -8,25 +8,6 @@ public class ViewData implements Parcelable {
 
   public static final int DEFAULT_PADDING = 8;
 
-  // Layouts
-  public static final int TYPE_LINEAR_LAYOUT = 0;
-  public static final int TYPE_FRAME_LAYOUT = 1;
-  public static final int TYPE_RELATIVE_LAYOUT = 2;
-  public static final int TYPE_VSCROLL_VIEW = 3;
-  public static final int TYPE_HSCROLL_VIEW = 4;
-  public static final int TYPE_RADIO_GROUP = 5;
-
-  // Widgets
-  public static final int TYPE_TEXT_VIEW = 6;
-  public static final int TYPE_EDIT_TEXT = 7;
-  public static final int TYPE_BUTTON = 8;
-  public static final int TYPE_IMAGE_VIEW = 9;
-  public static final int TYPE_CHECK_BOX = 10;
-  public static final int TYPE_RADIO_BUTTON = 11;
-  public static final int TYPE_SWITCH = 12;
-  public static final int TYPE_SEEK_BAR = 13;
-  public static final int TYPE_PROGRESS_BAR = 14;
-
   public String parentId;
   public String id;
 

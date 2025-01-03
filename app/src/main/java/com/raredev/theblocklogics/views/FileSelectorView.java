@@ -174,7 +174,7 @@ public class FileSelectorView extends LinearLayout {
       tilName.setError(getContext().getString(R.string.error_invalid_characters));
     } else if (ProjectDataManager.constainsView(name)) {
       tilName.setError(getContext().getString(R.string.error_invalid_name));
-    }else {
+    } else {
       tilName.setErrorEnabled(false);
       button.setEnabled(true);
     }

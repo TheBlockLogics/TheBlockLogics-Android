@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.SizeUtils;
 import com.raredev.theblocklogics.editor.view.data.ViewData;
 import com.raredev.theblocklogics.editor.view.views.ViewItem;
+import dev.trindadedev.theblocklogics.editor.view.type.ViewType;
 
 public class PropertiesApplicator {
 
@@ -18,12 +19,12 @@ public class PropertiesApplicator {
     var view = viewItem.getView();
 
     switch (viewData.type) {
-      case ViewData.TYPE_LINEAR_LAYOUT:
+      case ViewType.TYPE_LINEAR_LAYOUT:
         applyLayoutProperties(viewData, (LinearLayout) view);
         break;
-      case ViewData.TYPE_TEXT_VIEW:
-      case ViewData.TYPE_EDIT_TEXT:
-      case ViewData.TYPE_BUTTON:
+      case ViewType.TYPE_TEXT_VIEW:
+      case ViewType.TYPE_EDIT_TEXT:
+      case ViewType.TYPE_BUTTON:
         applyTextProperties(viewData, (TextView) view);
         break;
     }
@@ -63,7 +64,7 @@ public class PropertiesApplicator {
     params.width = width;
     params.height = height;
 
-    if (params instanceof LinearLayout.LayoutParams ) {
+    if (params instanceof LinearLayout.LayoutParams) {
       ((LinearLayout.LayoutParams) params).gravity = viewData.layout.layoutGravity;
     } else if (params instanceof FrameLayout.LayoutParams) {
       ((FrameLayout.LayoutParams) params).gravity = viewData.layout.layoutGravity;
@@ -75,11 +76,11 @@ public class PropertiesApplicator {
 
   public static ViewGroup.LayoutParams createLayoutParams(int type, int width, int height) {
     switch (type) {
-      case ViewData.TYPE_LINEAR_LAYOUT:
-      case ViewData.TYPE_VSCROLL_VIEW:
-      case ViewData.TYPE_HSCROLL_VIEW:
+      case ViewType.TYPE_LINEAR_LAYOUT:
+      case ViewType.TYPE_VSCROLL_VIEW:
+      case ViewType.TYPE_HSCROLL_VIEW:
         return new LinearLayout.LayoutParams(width, height);
-      case ViewData.TYPE_FRAME_LAYOUT:
+      case ViewType.TYPE_FRAME_LAYOUT:
         return new FrameLayout.LayoutParams(width, height);
     }
     return null;

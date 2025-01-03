@@ -63,9 +63,9 @@ public class ProjectActivity extends BaseActivity {
     configureTabs();
 
     project = getParcelable(Constants.KEY_EXTRA_PROJECT, Project.class);
-    if (project != null ) {
-        viewModel.setOpenedProject(project);
-        new LoadProjectTask().start();
+    if (project != null) {
+      viewModel.setOpenedProject(project);
+      new LoadProjectTask().start();
     }
 
     viewModel

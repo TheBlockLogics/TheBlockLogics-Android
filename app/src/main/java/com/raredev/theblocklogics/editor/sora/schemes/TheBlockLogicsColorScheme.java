@@ -1,7 +1,7 @@
 package com.raredev.theblocklogics.editor.sora.schemes;
 
-import io.github.rosemoe.sora.widget.schemes.EditorColorScheme;
 import android.graphics.Color;
+import io.github.rosemoe.sora.widget.schemes.EditorColorScheme;
 
 public class TheBlockLogicsColorScheme extends EditorColorScheme {
 

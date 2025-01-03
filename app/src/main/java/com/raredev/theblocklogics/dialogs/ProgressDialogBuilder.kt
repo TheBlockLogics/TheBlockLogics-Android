@@ -3,7 +3,6 @@ package com.raredev.theblocklogics.dialogs
 import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
-import androidx.annotation.NonNull
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -15,35 +14,53 @@ class ProgressDialogBuilder(val context: Context) {
   private val builder = MaterialAlertDialogBuilder(context).setView(binding.root)
 
   fun getDialogBuilder(): MaterialAlertDialogBuilder {
-    return this.builder;
+    return this.builder
   }
 
-  fun setPositiveButton(text: String, listener: DialogInterface.OnClickListener): ProgressDialogBuilder {
+  fun setPositiveButton(
+    text: String,
+    listener: DialogInterface.OnClickListener,
+  ): ProgressDialogBuilder {
     builder.setPositiveButton(text, listener)
     return this
   }
 
-  fun setPositiveButton(@StringRes text: Int, listener: DialogInterface.OnClickListener): ProgressDialogBuilder {
+  fun setPositiveButton(
+    @StringRes text: Int,
+    listener: DialogInterface.OnClickListener,
+  ): ProgressDialogBuilder {
     builder.setPositiveButton(text, listener)
     return this
   }
 
-  fun setNegativeButton(text: String, listener: DialogInterface.OnClickListener): ProgressDialogBuilder {
+  fun setNegativeButton(
+    text: String,
+    listener: DialogInterface.OnClickListener,
+  ): ProgressDialogBuilder {
     builder.setNegativeButton(text, listener)
     return this
   }
 
-  fun setNegativeButton(@StringRes text: Int, listener: DialogInterface.OnClickListener): ProgressDialogBuilder {
+  fun setNegativeButton(
+    @StringRes text: Int,
+    listener: DialogInterface.OnClickListener,
+  ): ProgressDialogBuilder {
     builder.setNegativeButton(text, listener)
     return this
   }
 
-  fun setNeutralButton(text: String, listener: DialogInterface.OnClickListener): ProgressDialogBuilder {
+  fun setNeutralButton(
+    text: String,
+    listener: DialogInterface.OnClickListener,
+  ): ProgressDialogBuilder {
     builder.setNeutralButton(text, listener)
     return this
   }
 
-  fun setNeutralButton(@StringRes text: Int, listener: DialogInterface.OnClickListener): ProgressDialogBuilder {
+  fun setNeutralButton(
+    @StringRes text: Int,
+    listener: DialogInterface.OnClickListener,
+  ): ProgressDialogBuilder {
     builder.setNeutralButton(text, listener)
     return this
   }
@@ -62,7 +79,7 @@ class ProgressDialogBuilder(val context: Context) {
     return this
   }
 
-  fun setMessage(message: String): ProgressDialogBuilder{
+  fun setMessage(message: String): ProgressDialogBuilder {
     binding.message.setText(message)
     return this
   }
@@ -73,7 +90,7 @@ class ProgressDialogBuilder(val context: Context) {
   }
 
   fun setProgress(progress: Int): ProgressDialogBuilder {
-    binding.circularProgressIndicator.setProgressCompat(progress, true);
+    binding.circularProgressIndicator.setProgressCompat(progress, true)
     return this
   }
 

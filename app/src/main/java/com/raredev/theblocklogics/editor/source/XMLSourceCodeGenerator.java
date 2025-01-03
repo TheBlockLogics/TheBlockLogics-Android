@@ -6,6 +6,7 @@ import com.raredev.theblocklogics.editor.view.data.ViewData;
 import com.raredev.theblocklogics.editor.view.utils.Attributes;
 import com.raredev.theblocklogics.editor.view.utils.ViewEditorUtils;
 import com.raredev.theblocklogics.utils.Constants;
+import dev.trindadedev.theblocklogics.editor.view.type.ViewType;
 import java.util.List;
 
 public class XMLSourceCodeGenerator {
@@ -60,19 +61,19 @@ public class XMLSourceCodeGenerator {
     addPaddingAttributes(attrDepth, viewData);
 
     switch (viewData.type) {
-      case ViewData.TYPE_LINEAR_LAYOUT:
+      case ViewType.TYPE_LINEAR_LAYOUT:
         addLinearLayoutAttributes(attrDepth, viewData);
         break;
-      case ViewData.TYPE_BUTTON:
-      case ViewData.TYPE_EDIT_TEXT:
-      case ViewData.TYPE_TEXT_VIEW:
+      case ViewType.TYPE_BUTTON:
+      case ViewType.TYPE_EDIT_TEXT:
+      case ViewType.TYPE_TEXT_VIEW:
         addTextViewAttributes(attrDepth, viewData);
     }
     code.deleteCharAt(code.length() - 1);
-    if (viewData.type == ViewData.TYPE_LINEAR_LAYOUT
-        || viewData.type == ViewData.TYPE_VSCROLL_VIEW
-        || viewData.type == ViewData.TYPE_HSCROLL_VIEW
-        || viewData.type == ViewData.TYPE_FRAME_LAYOUT) {
+    if (viewData.type == ViewType.TYPE_LINEAR_LAYOUT
+        || viewData.type == ViewType.TYPE_VSCROLL_VIEW
+        || viewData.type == ViewType.TYPE_HSCROLL_VIEW
+        || viewData.type == ViewType.TYPE_FRAME_LAYOUT) {
       addTagHeadCloser(true);
       for (ViewData child : viewsData) {
         if (child.parentId.equals(viewData.id)) {

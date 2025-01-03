@@ -3,7 +3,6 @@ package com.raredev.theblocklogics.editor.view.dialogs;
 import android.content.Context;
 import android.text.Editable;
 import android.text.InputType;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,8 @@ import android.widget.RadioGroup;
 import com.raredev.theblocklogics.R;
 import com.raredev.theblocklogics.databinding.DialogSizeBinding;
 import com.raredev.theblocklogics.editor.view.utils.PropertiesApplicator;
-import com.raredev.theblocklogics.editor.view.views.LayoutItem;
 import com.raredev.theblocklogics.editor.view.views.ViewItem;
 import com.raredev.theblocklogics.models.Property;
-import com.raredev.theblocklogics.utils.Constants;
 import com.raredev.theblocklogics.utils.OnTextChangedWatcher;
 
 public class SizePropertyDialog extends PropertyDialog {

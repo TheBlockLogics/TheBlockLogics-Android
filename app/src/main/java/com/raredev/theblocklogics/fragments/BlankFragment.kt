@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.raredev.theblocklogics.databinding.FragmentBlankBinding
 
-class BlankFragment: Fragment() {
+class BlankFragment : Fragment() {
 
   private var _binding: FragmentBlankBinding? = null
   private val binding: FragmentBlankBinding
@@ -20,7 +20,11 @@ class BlankFragment: Fragment() {
     }
   }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?,
+  ): View {
     _binding = FragmentBlankBinding.inflate(inflater, container, false)
     return binding.root
   }
