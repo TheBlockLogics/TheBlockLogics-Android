@@ -14,13 +14,13 @@ import com.raredev.theblocklogics.editor.view.data.ViewData
 import com.raredev.theblocklogics.editor.view.dialogs.*
 import com.raredev.theblocklogics.editor.view.utils.PropertiesApplicator
 import com.raredev.theblocklogics.editor.view.utils.ViewEditorUtils
-import com.raredev.theblocklogics.editor.view.utils.ViewItemCreator
 import com.raredev.theblocklogics.editor.view.views.LayoutItem
 import com.raredev.theblocklogics.editor.view.views.PlaceView
 import com.raredev.theblocklogics.editor.view.views.ViewItem
 import com.raredev.theblocklogics.editor.view.views.layout.LinearLayoutItem
 import com.raredev.theblocklogics.models.Property
 import com.raredev.theblocklogics.utils.Constants
+import dev.trindadedev.theblocklogics.editor.view.ViewItemCreator
 
 class ViewEditor: FrameLayout {
 
@@ -42,7 +42,7 @@ class ViewEditor: FrameLayout {
   }
 
   fun createRoot() {
-    val data = ViewData(ViewData.TYPE_LINEAR_LAYOUT)
+    val data = ViewData(ViewType.TYPE_LINEAR_LAYOUT)
     data.id = Constants.ROOT_ID
     data.width = LayoutParams.MATCH_PARENT
     data.height = LayoutParams.MATCH_PARENT
@@ -168,15 +168,15 @@ class ViewEditor: FrameLayout {
     addProperty(properties, Property.TYPE_LAYOUT_GRAVITY, Constants.PROPERTY_LAYOUT_GRAVITY, ViewEditorUtils.gravityToString(viewData.layout.layoutGravity))
 
     when (viewData.type) {
-      ViewData.TYPE_LINEAR_LAYOUT, ViewData.TYPE_FRAME_LAYOUT -> {
+      ViewType.TYPE_LINEAR_LAYOUT, ViewType.TYPE_FRAME_LAYOUT -> {
         addProperty(properties, Property.TYPE_GRAVITY, Constants.PROPERTY_GRAVITY, ViewEditorUtils.gravityToString(viewData.layout.gravity))
       }
-      ViewData.TYPE_EDIT_TEXT -> {
+      ViewType.TYPE_EDIT_TEXT -> {
         addProperty(properties, Property.TYPE_GRAVITY, Constants.PROPERTY_GRAVITY, ViewEditorUtils.gravityToString(viewData.layout.gravity))
         addProperty(properties, Property.TYPE_TEXT, Constants.PROPERTY_TEXT, viewData.text.text)
         addProperty(properties, Property.TYPE_HINT, Constants.PROPERTY_HINT, viewData.text.hint)
       }
-      ViewData.TYPE_TEXT_VIEW, ViewData.TYPE_BUTTON -> {
+      ViewType.TYPE_TEXT_VIEW, ViewType.TYPE_BUTTON -> {
         addProperty(properties, Property.TYPE_GRAVITY, Constants.PROPERTY_GRAVITY, ViewEditorUtils.gravityToString(viewData.layout.gravity))
         addProperty(properties, Property.TYPE_TEXT, Constants.PROPERTY_TEXT, viewData.text.text)
       }

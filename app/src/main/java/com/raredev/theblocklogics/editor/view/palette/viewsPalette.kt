@@ -5,6 +5,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.raredev.theblocklogics.R
 import com.raredev.theblocklogics.editor.view.data.ViewData
+import dev.trindadedev.theblocklogics.editor.view.type.ViewType
 
 class TextViewPaletteItem(): PaletteItem(
   R.mipmap.ic_palette_text_view,
@@ -12,7 +13,7 @@ class TextViewPaletteItem(): PaletteItem(
   TextView::class.java.name
 ) {
   override fun createViewData(): ViewData {
-    return ViewData(ViewData.TYPE_TEXT_VIEW).apply {
+    return ViewData(ViewType.TYPE_TEXT_VIEW).apply {
         text.text = name
       }
   }
@@ -24,7 +25,7 @@ class EditTextPaletteItem(): PaletteItem(
   EditText::class.java.name
 ) {
   override fun createViewData(): ViewData {
-    return ViewData(ViewData.TYPE_EDIT_TEXT).apply {
+    return ViewData(ViewType.TYPE_EDIT_TEXT).apply {
         text.hint = name
       }
   }
@@ -36,7 +37,7 @@ class ButtonPaletteItem(): PaletteItem(
   Button::class.java.name
 ) {
   override fun createViewData(): ViewData {
-    return ViewData(ViewData.TYPE_BUTTON).apply {
+    return ViewData(ViewType.TYPE_BUTTON).apply {
         text.text = name
       }
   }

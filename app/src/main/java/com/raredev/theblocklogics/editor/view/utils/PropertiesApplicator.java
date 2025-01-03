@@ -18,12 +18,12 @@ public class PropertiesApplicator {
     var view = viewItem.getView();
 
     switch (viewData.type) {
-      case ViewData.TYPE_LINEAR_LAYOUT:
+      case ViewType.TYPE_LINEAR_LAYOUT:
         applyLayoutProperties(viewData, (LinearLayout) view);
         break;
-      case ViewData.TYPE_TEXT_VIEW:
-      case ViewData.TYPE_EDIT_TEXT:
-      case ViewData.TYPE_BUTTON:
+      case ViewType.TYPE_TEXT_VIEW:
+      case ViewType.TYPE_EDIT_TEXT:
+      case ViewType.TYPE_BUTTON:
         applyTextProperties(viewData, (TextView) view);
         break;
     }
@@ -75,11 +75,11 @@ public class PropertiesApplicator {
 
   public static ViewGroup.LayoutParams createLayoutParams(int type, int width, int height) {
     switch (type) {
-      case ViewData.TYPE_LINEAR_LAYOUT:
-      case ViewData.TYPE_VSCROLL_VIEW:
-      case ViewData.TYPE_HSCROLL_VIEW:
+      case ViewType.TYPE_LINEAR_LAYOUT:
+      case ViewType.TYPE_VSCROLL_VIEW:
+      case ViewType.TYPE_HSCROLL_VIEW:
         return new LinearLayout.LayoutParams(width, height);
-      case ViewData.TYPE_FRAME_LAYOUT:
+      case ViewType.TYPE_FRAME_LAYOUT:
         return new FrameLayout.LayoutParams(width, height);
     }
     return null;

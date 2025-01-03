@@ -20,21 +20,21 @@ public class ViewEditorUtils {
   private static final SparseArray<String> views = new SparseArray<>();
 
   static {
-    views.put(ViewData.TYPE_LINEAR_LAYOUT, "LinearLayout");
-    views.put(ViewData.TYPE_FRAME_LAYOUT, "FrameLayout");
-    views.put(ViewData.TYPE_RELATIVE_LAYOUT, "RelativeLayout");
-    views.put(ViewData.TYPE_VSCROLL_VIEW, "ScrollView");
-    views.put(ViewData.TYPE_HSCROLL_VIEW, "HorizontalScrollView");
-    views.put(ViewData.TYPE_RADIO_GROUP, "RadioGroup");
-    views.put(ViewData.TYPE_TEXT_VIEW, "TextView");
-    views.put(ViewData.TYPE_EDIT_TEXT, "EditText");
-    views.put(ViewData.TYPE_BUTTON, "Button");
-    views.put(ViewData.TYPE_IMAGE_VIEW, "ImageView");
-    views.put(ViewData.TYPE_CHECK_BOX, "CheckBox");
-    views.put(ViewData.TYPE_RADIO_BUTTON, "RadioButton");
-    views.put(ViewData.TYPE_SWITCH, "Switch");
-    views.put(ViewData.TYPE_SEEK_BAR, "SeekBar");
-    views.put(ViewData.TYPE_PROGRESS_BAR, "ProgressBar");
+    views.put(ViewType.TYPE_LINEAR_LAYOUT, "LinearLayout");
+    views.put(ViewType.TYPE_FRAME_LAYOUT, "FrameLayout");
+    views.put(ViewType.TYPE_RELATIVE_LAYOUT, "RelativeLayout");
+    views.put(ViewType.TYPE_VSCROLL_VIEW, "ScrollView");
+    views.put(ViewType.TYPE_HSCROLL_VIEW, "HorizontalScrollView");
+    views.put(ViewType.TYPE_RADIO_GROUP, "RadioGroup");
+    views.put(ViewType.TYPE_TEXT_VIEW, "TextView");
+    views.put(ViewType.TYPE_EDIT_TEXT, "EditText");
+    views.put(ViewType.TYPE_BUTTON, "Button");
+    views.put(ViewType.TYPE_IMAGE_VIEW, "ImageView");
+    views.put(ViewType.TYPE_CHECK_BOX, "CheckBox");
+    views.put(ViewType.TYPE_RADIO_BUTTON, "RadioButton");
+    views.put(ViewType.TYPE_SWITCH, "Switch");
+    views.put(ViewType.TYPE_SEEK_BAR, "SeekBar");
+    views.put(ViewType.TYPE_PROGRESS_BAR, "ProgressBar");
   }
 
   public static List<ViewData> getViewsData(ViewEditor editor) {
@@ -116,19 +116,19 @@ public class ViewEditorUtils {
 
   public static String getIdForType(int type) {
     switch (type) {
-      case ViewData.TYPE_LINEAR_LAYOUT:
+      case ViewType.TYPE_LINEAR_LAYOUT:
         return "linear";
-      case ViewData.TYPE_VSCROLL_VIEW:
+      case ViewType.TYPE_VSCROLL_VIEW:
         return "vscroll";
-      case ViewData.TYPE_HSCROLL_VIEW:
+      case ViewType.TYPE_HSCROLL_VIEW:
         return "hscroll";
-      case ViewData.TYPE_FRAME_LAYOUT:
+      case ViewType.TYPE_FRAME_LAYOUT:
         return "flayout";
-      case ViewData.TYPE_TEXT_VIEW:
+      case ViewType.TYPE_TEXT_VIEW:
         return "textview";
-      case ViewData.TYPE_EDIT_TEXT:
+      case ViewType.TYPE_EDIT_TEXT:
         return "edittext";
-      case ViewData.TYPE_BUTTON:
+      case ViewType.TYPE_BUTTON:
         return "button";
       default:
         return null;
@@ -137,19 +137,19 @@ public class ViewEditorUtils {
 
   public static int getIconForType(int type) {
     switch (type) {
-      case ViewData.TYPE_LINEAR_LAYOUT:
+      case ViewType.TYPE_LINEAR_LAYOUT:
         return R.mipmap.ic_palette_linear_layout_vert;
-      case ViewData.TYPE_VSCROLL_VIEW:
+      case ViewType.TYPE_VSCROLL_VIEW:
         return R.mipmap.ic_palette_scroll_view;
-      case ViewData.TYPE_HSCROLL_VIEW:
+      case ViewType.TYPE_HSCROLL_VIEW:
         return R.mipmap.ic_palette_horizontal_scroll_view;
-      case ViewData.TYPE_FRAME_LAYOUT:
+      case ViewType.TYPE_FRAME_LAYOUT:
         return R.mipmap.ic_palette_frame_layout;
-      case ViewData.TYPE_TEXT_VIEW:
+      case ViewType.TYPE_TEXT_VIEW:
         return R.mipmap.ic_palette_text_view;
-      case ViewData.TYPE_EDIT_TEXT:
+      case ViewType.TYPE_EDIT_TEXT:
         return R.mipmap.ic_palette_edit_text;
-      case ViewData.TYPE_BUTTON:
+      case ViewType.TYPE_BUTTON:
         return R.mipmap.ic_palette_button;
       default:
         return 0;

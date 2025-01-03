@@ -28,6 +28,7 @@ import com.raredev.theblocklogics.utils.Logger
 import com.raredev.theblocklogics.utils.OnTextChangedWatcher
 import com.raredev.theblocklogics.utils.UriUtils
 import com.raredev.theblocklogics.viewmodel.MainViewModel
+import dev.trindadedev.theblocklogics.ext.getSafeParcelable
 import java.io.File;
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -81,7 +82,7 @@ class ConfigProjectDialog(): DialogFragment() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     arguments?.let {
-      project = it.getParcelable(Constants.KEY_EXTRA_PROJECT, Project::class.java)
+      project = it.getSafeParcelable<Project>(Constants.KEY_EXTRA_PROJECT)
     }
   }
 

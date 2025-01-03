@@ -9,10 +9,10 @@ import com.raredev.theblocklogics.editor.view.data.ViewData
 import com.raredev.theblocklogics.editor.view.palette.PaletteItem
 import com.raredev.theblocklogics.editor.view.utils.PropertiesApplicator
 import com.raredev.theblocklogics.editor.view.utils.ViewEditorUtils
-import com.raredev.theblocklogics.editor.view.utils.ViewItemCreator
 import com.raredev.theblocklogics.editor.view.views.LayoutItem
 import com.raredev.theblocklogics.editor.view.views.PlaceView
 import com.raredev.theblocklogics.editor.view.views.ViewItem
+import dev.trindadedev.theblocklogics.editor.view.ViewItemCreator
 import kotlin.math.min
 import kotlin.math.max
 
