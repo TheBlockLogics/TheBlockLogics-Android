@@ -10,43 +10,44 @@ import com.raredev.theblocklogics.editor.view.views.layout.ScrollVItem
 import com.raredev.theblocklogics.editor.view.views.text.ButtonItem
 import com.raredev.theblocklogics.editor.view.views.text.EditTextItem
 import com.raredev.theblocklogics.editor.view.views.text.TextViewItem
+import dev.trindadedev.theblocklogics.editor.view.type.ViewType
 
 /** Main View Creator of ViewEditor */
 object ViewItemCreator {
 
   fun createItemView(context: Context, data: ViewData): ViewItem {
-    return handleLayoutViews();
+    return handleLayoutViews(context, data);
   }
 
   private fun handleLayoutViews(context: Context, data: ViewData): ViewItem {
     return when (data.type) {
-      TYPE_LINEAR_LAYOUT,
-      TYPE_RADIO_GROUP,
-      TYPE_RELATIVE_LAYOUT -> LinearLayoutItem(context, data)
-      TYPE_FRAME_LAYOUT -> FrameLayoutItem(context, data)
-      TYPE_VSCROLL_VIEW -> ScrollVItem(context, data)
-      TYPE_HSCROLL_VIEW -> ScrollHItem(context, data)
+      ViewType.TYPE_LINEAR_LAYOUT,
+      ViewType.TYPE_RADIO_GROUP,
+      ViewType.TYPE_RELATIVE_LAYOUT -> LinearLayoutItem(context, data)
+      ViewType.TYPE_FRAME_LAYOUT -> FrameLayoutItem(context, data)
+      ViewType.TYPE_VSCROLL_VIEW -> ScrollVItem(context, data)
+      ViewType.TYPE_HSCROLL_VIEW -> ScrollHItem(context, data)
       else -> handleNormalViews(context, data)
     }
   }
 
   private fun handleNormalViews(context: Context, data: ViewData): ViewItem {
     return when (data.type) {
-      TYPE_IMAGE_VIEW,
-      TYPE_CHECK_BOX,
-      TYPE_RADIO_BUTTON,
-      TYPE_SWITCH,
-      TYPE_SEEK_BAR,
-      TYPE_PROGRESS_BAR -> LinearLayoutItem(context, data)
+      ViewType.TYPE_IMAGE_VIEW,
+      ViewType.TYPE_CHECK_BOX,
+      ViewType.TYPE_RADIO_BUTTON,
+      ViewType.TYPE_SWITCH,
+      ViewType.TYPE_SEEK_BAR,
+      ViewType.TYPE_PROGRESS_BAR -> LinearLayoutItem(context, data)
       else -> handleTextViews(context, data)
     }
   }
 
   private fun handleTextViews(context: Context, data: ViewData): ViewItem {
     return when (data.type) {
-      TYPE_TEXT_VIEW -> TextViewItem(context, data)
-      TYPE_EDIT_TEXT -> EditTextItem(context, data)
-      TYPE_BUTTON -> ButttonItem(context, data)
+      ViewType.TYPE_TEXT_VIEW -> TextViewItem(context, data)
+      ViewType.TYPE_EDIT_TEXT -> EditTextItem(context, data)
+      ViewType.TYPE_BUTTON -> ButtonItem(context, data)
       else -> getDefaultView(context, data)
     }
   }
