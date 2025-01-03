@@ -5,21 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.blankj.utilcode.util.ThreadUtils
-import com.raredev.theblocklogics.editor.view.data.ViewData
 import com.raredev.theblocklogics.editor.view.palette.PaletteItem
 import com.raredev.theblocklogics.editor.view.utils.PropertiesApplicator
-import com.raredev.theblocklogics.editor.view.utils.ViewEditorUtils
 import com.raredev.theblocklogics.editor.view.views.LayoutItem
 import com.raredev.theblocklogics.editor.view.views.PlaceView
 import com.raredev.theblocklogics.editor.view.views.ViewItem
 import dev.trindadedev.theblocklogics.editor.view.ViewItemCreator
-import kotlin.math.min
 import kotlin.math.max
+import kotlin.math.min
 
-class WidgetDragListener(
-  private val editor: ViewEditor,
-  private val placeView: PlaceView
-): View.OnDragListener {
+class WidgetDragListener(private val editor: ViewEditor, private val placeView: PlaceView) :
+  View.OnDragListener {
 
   private var calculatedIndex = -1
   private var removeDraggedView = false
@@ -94,7 +90,7 @@ class WidgetDragListener(
         // Update properties.
         PropertiesApplicator.applyViewProperties(view)
         return true
-    }
+      }
       else -> return false
     }
   }

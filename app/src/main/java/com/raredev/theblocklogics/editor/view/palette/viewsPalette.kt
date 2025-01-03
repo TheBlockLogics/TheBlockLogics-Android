@@ -7,38 +7,23 @@ import com.raredev.theblocklogics.R
 import com.raredev.theblocklogics.editor.view.data.ViewData
 import dev.trindadedev.theblocklogics.editor.view.type.ViewType
 
-class TextViewPaletteItem(): PaletteItem(
-  R.mipmap.ic_palette_text_view,
-  "TextView",
-  TextView::class.java.name
-) {
+class TextViewPaletteItem() :
+  PaletteItem(R.mipmap.ic_palette_text_view, "TextView", TextView::class.java.name) {
   override fun createViewData(): ViewData {
-    return ViewData(ViewType.TYPE_TEXT_VIEW).apply {
-        text.text = name
-      }
+    return ViewData(ViewType.TYPE_TEXT_VIEW).apply { text.text = name }
   }
 }
 
-class EditTextPaletteItem(): PaletteItem(
-  R.mipmap.ic_palette_edit_text,
-  "EditText",
-  EditText::class.java.name
-) {
+class EditTextPaletteItem() :
+  PaletteItem(R.mipmap.ic_palette_edit_text, "EditText", EditText::class.java.name) {
   override fun createViewData(): ViewData {
-    return ViewData(ViewType.TYPE_EDIT_TEXT).apply {
-        text.hint = name
-      }
+    return ViewData(ViewType.TYPE_EDIT_TEXT).apply { text.hint = name }
   }
 }
 
-class ButtonPaletteItem(): PaletteItem(
-  R.mipmap.ic_palette_button,
-  "Button",
-  Button::class.java.name
-) {
+class ButtonPaletteItem() :
+  PaletteItem(R.mipmap.ic_palette_button, "Button", Button::class.java.name) {
   override fun createViewData(): ViewData {
-    return ViewData(ViewType.TYPE_BUTTON).apply {
-        text.text = name
-      }
+    return ViewData(ViewType.TYPE_BUTTON).apply { text.text = name }
   }
 }

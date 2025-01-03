@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.FileUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -21,10 +21,9 @@ import com.raredev.theblocklogics.models.Project
 import com.raredev.theblocklogics.utils.Constants
 import com.raredev.theblocklogics.viewmodel.MainViewModel
 
-class HomeFragment: Fragment() {
+class HomeFragment : Fragment() {
 
-  private val viewModel by viewModels<MainViewModel>(
-    ownerProducer = { requireActivity() } )
+  private val viewModel by viewModels<MainViewModel>(ownerProducer = { requireActivity() })
 
   private var _binding: FragmentHomeBinding? = null
   private val binding: FragmentHomeBinding
@@ -32,23 +31,33 @@ class HomeFragment: Fragment() {
 
   private lateinit var adapter: ProjectsAdapter
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?,
+  ): View {
     _binding = FragmentHomeBinding.inflate(inflater, container, false)
     return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    adapter = ProjectsAdapter(layoutInflater, viewModel, object: ProjectsAdapter.ProjectListener {
-      override fun onProjectClick(project: Project) {
-        val intent = Intent(requireContext(), ProjectActivity::class.java)
-        intent.putExtra(Constants.KEY_EXTRA_PROJECT, project)
-        startActivity(intent)
-      }
-      override fun onProjectMenuClick(v: View, project: Project) {
-        showProjectMenu(v, project)
-      }
-    })
+    adapter =
+      ProjectsAdapter(
+        layoutInflater,
+        viewModel,
+        object : ProjectsAdapter.ProjectListener {
+          override fun onProjectClick(project: Project) {
+            val intent = Intent(requireContext(), ProjectActivity::class.java)
+            intent.putExtra(Constants.KEY_EXTRA_PROJECT, project)
+            startActivity(intent)
+          }
+
+          override fun onProjectMenuClick(v: View, project: Project) {
+            showProjectMenu(v, project)
+          }
+        },
+      )
     binding.rvProjects.layoutManager = LinearLayoutManager(requireContext())
     binding.rvProjects.adapter = adapter
 
@@ -83,7 +92,8 @@ class HomeFragment: Fragment() {
 
     pm.setOnMenuItemClickListener() {
       when (it.itemId) {
-        R.id.menu_config -> ConfigProjectDialog.Companion.newInstance(project).show(childFragmentManager, null)
+        R.id.menu_config ->
+          ConfigProjectDialog.Companion.newInstance(project).show(childFragmentManager, null)
         R.id.menu_delete -> deleteProject(project)
         else -> false
       }
@@ -96,13 +106,14 @@ class HomeFragment: Fragment() {
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(R.string.delete_project)
       .setMessage(getString(R.string.delete_project_message, project.appName))
-      .setPositiveButton(R.string.yes, { _, _ ->
-        FileUtils.delete(project.path)
-        viewModel.loadProjects()
-      })
-      .setNegativeButton(R.string.no, { d, _ ->
-        d.dismiss()
-      })
+      .setPositiveButton(
+        R.string.yes,
+        { _, _ ->
+          FileUtils.delete(project.path)
+          viewModel.loadProjects()
+        },
+      )
+      .setNegativeButton(R.string.no, { d, _ -> d.dismiss() })
       .show()
   }
 }

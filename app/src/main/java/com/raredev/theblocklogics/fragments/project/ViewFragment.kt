@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
-import androidx.fragment.app.viewModels
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.raredev.theblocklogics.R
 import com.raredev.theblocklogics.databinding.FragmentViewBinding
 import com.raredev.theblocklogics.editor.view.utils.ViewEditorUtils
@@ -16,12 +16,11 @@ import com.raredev.theblocklogics.managers.ProjectDataManager
 import com.raredev.theblocklogics.utils.Logger
 import com.raredev.theblocklogics.viewmodel.ProjectViewModel
 
-class ViewFragment: Fragment(), SavableFragment, View.OnDragListener {
+class ViewFragment : Fragment(), SavableFragment, View.OnDragListener {
 
   private val logger = Logger.newInstance("ViewFragment")
 
-  private val viewModel by viewModels<ProjectViewModel>(
-    ownerProducer = { requireActivity() } )
+  private val viewModel by viewModels<ProjectViewModel>(ownerProducer = { requireActivity() })
 
   private var _binding: FragmentViewBinding? = null
   private val binding: FragmentViewBinding
@@ -36,7 +35,11 @@ class ViewFragment: Fragment(), SavableFragment, View.OnDragListener {
     }
   }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?,
+  ): View {
     _binding = FragmentViewBinding.inflate(inflater, container, false)
     return binding.root
   }
@@ -50,7 +53,7 @@ class ViewFragment: Fragment(), SavableFragment, View.OnDragListener {
   }
 
   override fun onDrag(host: View, event: DragEvent): Boolean {
-    val state = event.getLocalState();
+    val state = event.getLocalState()
     when (event.getAction()) {
       DragEvent.ACTION_DRAG_STARTED -> {
         if (state is ViewItem) {
@@ -105,7 +108,7 @@ class ViewFragment: Fragment(), SavableFragment, View.OnDragListener {
     selectedFileName?.let {
       saveFileData(viewModel.previousSelectedFileName)
       binding.viewEditor.onChangeSelectedFile(ProjectDataManager.getView(selectedFileName))
-      logger.d("Layout: $it loaded!");
+      logger.d("Layout: $it loaded!")
     }
   }
 
@@ -118,14 +121,13 @@ class ViewFragment: Fragment(), SavableFragment, View.OnDragListener {
   }
 
   private fun animateRemoveViewArea(y: Float, alpha: Float) {
-    binding
-        .removeViewArea
-        .animate()
-        .y(y)
-        .scaleY(y)
-        .alpha(alpha)
-        .setDuration(200)
-        .setInterpolator(DecelerateInterpolator())
-        .start()
+    binding.removeViewArea
+      .animate()
+      .y(y)
+      .scaleY(y)
+      .alpha(alpha)
+      .setDuration(200)
+      .setInterpolator(DecelerateInterpolator())
+      .start()
   }
 }

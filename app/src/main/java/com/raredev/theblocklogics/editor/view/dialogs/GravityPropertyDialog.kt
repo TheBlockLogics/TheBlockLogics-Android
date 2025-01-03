@@ -3,21 +3,13 @@ package com.raredev.theblocklogics.editor.view.dialogs
 import android.content.Context
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.raredev.theblocklogics.R
 import com.raredev.theblocklogics.databinding.DialogGravityBinding
 import com.raredev.theblocklogics.editor.view.utils.PropertiesApplicator
-import com.raredev.theblocklogics.editor.view.views.LayoutItem
 import com.raredev.theblocklogics.editor.view.views.ViewItem
 import com.raredev.theblocklogics.models.Property
-import com.raredev.theblocklogics.utils.Constants
 
-class GravityPropertyDialog(
-  val context: Context,
-  val viewItem: ViewItem,
-  val property: Property
-): PropertyDialog(context, viewItem, property) {
+class GravityPropertyDialog(val context: Context, val viewItem: ViewItem, val property: Property) :
+  PropertyDialog(context, viewItem, property) {
 
   private val binding = DialogGravityBinding.inflate(LayoutInflater.from(context))
 

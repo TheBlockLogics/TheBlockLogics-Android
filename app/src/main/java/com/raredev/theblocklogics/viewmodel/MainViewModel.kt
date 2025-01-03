@@ -9,10 +9,10 @@ import com.raredev.theblocklogics.models.Project
 import com.raredev.theblocklogics.utils.Constants
 import com.raredev.theblocklogics.utils.loaders.ProjectsLoader
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
 
   // MainActivity
 
@@ -33,11 +33,12 @@ class MainViewModel: ViewModel() {
       _previousFragment.value = previous
       _selectedFragment.value = fragment
 
-      val navItemId = when (fragment) {
-        Constants.HOME_FRAGMENT -> R.id.menu_home
-        Constants.SETTINGS_FRAGMENT -> R.id.menu_settings
-        else -> throw IllegalArgumentException("Invalid fragment: $fragment")
-      }
+      val navItemId =
+        when (fragment) {
+          Constants.HOME_FRAGMENT -> R.id.menu_home
+          Constants.SETTINGS_FRAGMENT -> R.id.menu_settings
+          else -> throw IllegalArgumentException("Invalid fragment: $fragment")
+        }
       setNavigationSelectedItem(navItemId)
     }
   }
@@ -63,9 +64,7 @@ class MainViewModel: ViewModel() {
     viewModelScope.launch(Dispatchers.IO) {
       val projects = ProjectsLoader.fetchProjects()
 
-      withContext(Dispatchers.Main) {
-        setProjects(projects)
-      }
+      withContext(Dispatchers.Main) { setProjects(projects) }
     }
   }
 }

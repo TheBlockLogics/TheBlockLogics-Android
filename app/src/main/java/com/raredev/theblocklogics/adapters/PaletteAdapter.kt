@@ -14,17 +14,14 @@ import com.raredev.theblocklogics.R
 import com.raredev.theblocklogics.databinding.LayoutPalleteItemBinding
 import com.raredev.theblocklogics.editor.view.palette.*
 
-public class PaletteAdapter(
-  val drawerLayout: DrawerLayout,
-  val layoutInflater: LayoutInflater
-): RecyclerView.Adapter<PaletteAdapter.VH>() {
+public class PaletteAdapter(val drawerLayout: DrawerLayout, val layoutInflater: LayoutInflater) :
+  RecyclerView.Adapter<PaletteAdapter.VH>() {
 
   private val palette: MutableList<PaletteItem> = ArrayList()
 
-  class VH(internal val binding: LayoutPalleteItemBinding):
-    RecyclerView.ViewHolder(binding.root)
+  class VH(internal val binding: LayoutPalleteItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH{
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
     return VH(LayoutPalleteItemBinding.inflate(layoutInflater, parent, false))
   }
 
@@ -43,7 +40,15 @@ public class PaletteAdapter(
       widgetClass.setText(item.className)
 
       root.setOnLongClickListener {
-        if (ViewCompat.startDragAndDrop(dragView, ClipData.newPlainText("", ""), View.DragShadowBuilder(dragView), item, 0)) {
+        if (
+          ViewCompat.startDragAndDrop(
+            dragView,
+            ClipData.newPlainText("", ""),
+            View.DragShadowBuilder(dragView),
+            item,
+            0,
+          )
+        ) {
           drawerLayout.closeDrawer(GravityCompat.START)
           VibrateUtils.vibrate(100)
         }
@@ -52,7 +57,7 @@ public class PaletteAdapter(
     }
   }
 
-  override fun getItemCount(): Int  {
+  override fun getItemCount(): Int {
     return palette.size
   }
 

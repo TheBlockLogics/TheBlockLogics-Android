@@ -3,8 +3,8 @@ package dev.trindadedev.theblocklogics.editor.view
 import android.content.Context
 import com.raredev.theblocklogics.editor.view.data.ViewData
 import com.raredev.theblocklogics.editor.view.views.ViewItem
-import com.raredev.theblocklogics.editor.view.views.layout.LinearLayoutItem
 import com.raredev.theblocklogics.editor.view.views.layout.FrameLayoutItem
+import com.raredev.theblocklogics.editor.view.views.layout.LinearLayoutItem
 import com.raredev.theblocklogics.editor.view.views.layout.ScrollHItem
 import com.raredev.theblocklogics.editor.view.views.layout.ScrollVItem
 import com.raredev.theblocklogics.editor.view.views.text.ButtonItem
@@ -16,7 +16,7 @@ import dev.trindadedev.theblocklogics.editor.view.type.ViewType
 object ViewItemCreator {
 
   fun createItemView(context: Context, data: ViewData): ViewItem {
-    return handleLayoutViews(context, data);
+    return handleLayoutViews(context, data)
   }
 
   private fun handleLayoutViews(context: Context, data: ViewData): ViewItem {

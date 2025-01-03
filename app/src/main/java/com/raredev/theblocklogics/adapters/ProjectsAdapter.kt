@@ -8,18 +8,15 @@ import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.raredev.theblocklogics.databinding.LayoutProjectItemBinding
 import com.raredev.theblocklogics.models.Project
-import com.raredev.theblocklogics.utils.Constants
 import com.raredev.theblocklogics.viewmodel.MainViewModel
-import java.io.File
 
 public class ProjectsAdapter(
   val layoutInflater: LayoutInflater,
   val viewModel: MainViewModel,
-  val listener: ProjectListener
-): RecyclerView.Adapter<ProjectsAdapter.VH>() {
+  val listener: ProjectListener,
+) : RecyclerView.Adapter<ProjectsAdapter.VH>() {
 
-  class VH(internal val binding: LayoutProjectItemBinding):
-    RecyclerView.ViewHolder(binding.root)
+  class VH(internal val binding: LayoutProjectItemBinding) : RecyclerView.ViewHolder(binding.root)
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
     return VH(LayoutProjectItemBinding.inflate(layoutInflater, parent, false))
@@ -28,7 +25,8 @@ public class ProjectsAdapter(
   override fun onBindViewHolder(holder: VH, position: Int) {
     holder.binding.apply {
       root.setAnimation(
-        AnimationUtils.loadAnimation(holder.itemView.getContext(), android.R.anim.fade_in))
+        AnimationUtils.loadAnimation(holder.itemView.getContext(), android.R.anim.fade_in)
+      )
       val projects = viewModel.projects.value
       projects?.let {
         val project = projects[position]
@@ -37,13 +35,9 @@ public class ProjectsAdapter(
         name.text = project.appName
         appPackage.text = project.appPackage
 
-        root.setOnClickListener {
-          listener.onProjectClick(project)
-        }
+        root.setOnClickListener { listener.onProjectClick(project) }
 
-        menu.setOnClickListener {
-          listener.onProjectMenuClick(it, project)
-        }
+        menu.setOnClickListener { listener.onProjectMenuClick(it, project) }
       }
     }
   }
