@@ -13,6 +13,7 @@ import com.raredev.theblocklogics.editor.view.views.LayoutItem;
 import com.raredev.theblocklogics.editor.view.views.ViewItem;
 import com.raredev.theblocklogics.utils.Constants;
 import dev.trindadedev.theblocklogics.editor.view.type.ViewType;
+import dev.trindadedev.theblocklogics.editor.view.ViewItemCreator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class ViewEditorUtils {
     if (views != null && !views.isEmpty()) {
       for (ViewData data : views) {
         // Create ViewItem
-        ViewItem view = ViewItemCreator.createView(editor.getContext(), data);
+        ViewItem view = ViewItemCreator.createItemView(editor.getContext(), data);
 
         // Set default listeners
         editor.setListeners(view.getView());
