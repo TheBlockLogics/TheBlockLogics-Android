@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.SizeUtils;
 import com.raredev.theblocklogics.editor.view.data.ViewData;
 import com.raredev.theblocklogics.editor.view.views.ViewItem;
-import dev.trindadedev.theblocklogics.editor.view.type.ViewType
+import dev.trindadedev.theblocklogics.editor.view.type.ViewType;
 
 public class PropertiesApplicator {
 

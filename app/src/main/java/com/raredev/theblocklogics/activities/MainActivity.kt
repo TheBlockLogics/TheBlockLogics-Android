@@ -46,7 +46,6 @@ public class MainActivity: BaseActivity() {
       when (it.itemId) {
         R.id.menu_home -> viewModel.setFragment(Constants.HOME_FRAGMENT)
         R.id.menu_settings -> viewModel.setFragment(Constants.SETTINGS_FRAGMENT)
-        else -> false
       }
       true
     }
