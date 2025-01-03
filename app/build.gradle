@@ -8,7 +8,7 @@ android {
   compileSdk 33
 
   defaultConfig {
-    applicationId "com.raredev.theblocklogics"
+    applicationId "dev.trindadedev.theblocklogics"
     minSdk 21
     targetSdk 33
     versionCode 1
@@ -19,10 +19,20 @@ android {
     }
   }
 
+  signingConfigs {
+    debug {
+      storeFile file("../testkey.keystore")
+      storePassword "testkey"
+      keyAlias "testkey"
+      keyPassword "testkey"
+    }
+  }
+
   buildTypes {
     release {
-      minifyEnabled true
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+      signingConfig signingConfigs.debug
     }
   }
 
