@@ -2,8 +2,6 @@ package dev.trindadedev.theblocklogics.editor.view
 
 import android.content.Context
 import com.raredev.theblocklogics.editor.view.data.ViewData
-import com.raredev.theblocklogics.editor.view.data.LayoutData
-import com.raredev.theblocklogics.editor.view.data.TextData
 import com.raredev.theblocklogics.editor.view.views.ViewItem
 import com.raredev.theblocklogics.editor.view.views.layout.LinearLayoutItem
 import com.raredev.theblocklogics.editor.view.views.layout.FrameLayoutItem
@@ -13,13 +11,14 @@ import com.raredev.theblocklogics.editor.view.views.text.ButtonItem
 import com.raredev.theblocklogics.editor.view.views.text.EditTextItem
 import com.raredev.theblocklogics.editor.view.views.text.TextViewItem
 
+/** Main View Creator of ViewEditor */
 object ViewItemCreator {
 
   fun createItemView(context: Context, data: ViewData): ViewItem {
-    handleLayoutViews();
+    return handleLayoutViews();
   }
 
-  private fun handleLayoutViews(context: Context, data: LayoutData): ViewItem {
+  private fun handleLayoutViews(context: Context, data: ViewData): ViewItem {
     return when (data.type) {
       TYPE_LINEAR_LAYOUT,
       TYPE_RADIO_GROUP,
@@ -43,7 +42,7 @@ object ViewItemCreator {
     }
   }
 
-  private fun handleTextViews(context: Context, data: TextData): ViewItem {
+  private fun handleTextViews(context: Context, data: ViewData): ViewItem {
     return when (data.type) {
       TYPE_TEXT_VIEW -> TextViewItem(context, data)
       TYPE_EDIT_TEXT -> EditTextItem(context, data)
