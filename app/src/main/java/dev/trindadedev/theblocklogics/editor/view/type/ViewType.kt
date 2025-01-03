@@ -1,4 +1,4 @@
-package dev.trindadedev.theblocklogics.editor.view.data
+package dev.trindadedev.theblocklogics.editor.view.type
 
 object ViewType {
   // Layouts
