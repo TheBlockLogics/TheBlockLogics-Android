@@ -62,11 +62,10 @@ public class ProjectActivity extends BaseActivity {
     configureDrawer();
     configureTabs();
 
-    var extras = getIntent().getExtras();
-    if (extras != null && extras.containsKey(Constants.KEY_EXTRA_PROJECT)) {
-      project = extras.getParcelable(Constants.KEY_EXTRA_PROJECT, Project.class);
-      viewModel.setOpenedProject(project);
-      new LoadProjectTask().start();
+    project = getParcelable(Constants.KEY_EXTRA_PROJECT, Project.class);
+    if (project != null ) {
+        viewModel.setOpenedProject(project);
+        new LoadProjectTask().start();
     }
 
     viewModel

@@ -41,15 +41,9 @@ public class ShowSrcCodeActivity extends BaseActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setSupportActionBar(binding.toolbar);
+    sources = getParcelableArrayList(Constants.KEY_EXTRA_SRC_LIST, SrcFile.class);
 
     var extras = getIntent().getExtras();
-    if (extras == null) {
-      return;
-    }
-    if (extras.containsKey(Constants.KEY_EXTRA_SRC_LIST)) {
-      sources = extras.getParcelableArrayList(Constants.KEY_EXTRA_SRC_LIST, SrcFile.class);
-    }
-
     var dynamicColorScheme = new DynamicColorScheme();
     dynamicColorScheme.applyDynamic(this);
 
